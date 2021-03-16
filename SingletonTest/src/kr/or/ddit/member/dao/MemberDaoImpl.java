@@ -9,15 +9,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.or.ddit.member.vo.MemberVO;
-import kr.or.ddit.util.JDBCUtil2;
 import kr.or.ddit.util.JDBCUtil3;
 
 public class MemberDaoImpl implements IMemberDao{
 
-	private Connection conn;
 	private Statement stmt;
 	private PreparedStatement pstmt;
 	private ResultSet rs;
+	
+	private static IMemberDao memDao;
+	
+	private MemberDaoImpl() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public static IMemberDao getInstance() {
+		if(memDao == null) {
+			memDao = new MemberDaoImpl();
+		}
+		return memDao;
+	}
+	
 	
 	@Override
 	public int insertMember(Connection conn, MemberVO mv) throws SQLException {
