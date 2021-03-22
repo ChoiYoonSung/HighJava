@@ -51,7 +51,7 @@
 		select * 
 		from jdbc_board 
 		where 1=1 
-		<isNotEmpty property="boardTitle"> and board_title like '%' || #boardTitle# || '%'</isNotEmpty>
+		<isNotEmpty property="boardTitle"> and board_title like '%' || #boardTitle# || '%' </isNotEmpty>
 		<isNotEmpty property="boardContent"> and board_content'%' || #boardContent# || '%' </isNotEmpty>
 		<isNotEmpty property="boardWriter"> and board_writer = #boardWriter# </isNotEmpty>
 	</select>

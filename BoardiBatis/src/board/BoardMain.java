@@ -109,21 +109,26 @@ public class BoardMain {
 		
 		System.out.println();
 		System.out.println("--------------------------------------------------------");
-		System.out.println(" No\t제목\t\t작성자\t\t작성일");
+		System.out.println(" No\t제목\t\t작성자\t\t내용\t\t작성일");
 		System.out.println("--------------------------------------------------------");
 		
 		for(BoardVO bv2: boardList) {
-			System.out.print(bv.getBoardNo() + "\t");
-			if(bv.getBoardTitle().length() > 6 && bv.getBoardWriter().length() > 6) {
-				System.out.print(bv.getBoardTitle() + "\t" + bv.getBoardWriter() + "\t");
-			}else if(bv.getBoardTitle().length() > 6 && bv.getBoardWriter().length() <= 6){
-				System.out.print(bv.getBoardTitle() + "\t" + bv.getBoardWriter() + "\t\t");
-			}else if(bv.getBoardTitle().length() <= 6 && bv.getBoardWriter().length() > 6){
-				System.out.print(bv.getBoardTitle() + "\t\t" + bv.getBoardWriter() + "\t");
+			System.out.print(bv2.getBoardNo() + "\t");
+			if(bv2.getBoardTitle().length() > 7 && bv2.getBoardWriter().length() > 7) {
+				System.out.print(bv2.getBoardTitle() + "\t" + bv2.getBoardWriter() + "\t");
+			}else if(bv2.getBoardTitle().length() > 7 && bv2.getBoardWriter().length() <= 7){
+				System.out.print(bv2.getBoardTitle() + "\t" + bv2.getBoardWriter() + "\t\t");
+			}else if(bv2.getBoardTitle().length() <= 7 && bv2.getBoardWriter().length() > 7){
+				System.out.print(bv2.getBoardTitle() + "\t\t" + bv2.getBoardWriter() + "\t");
 			}else{
-				System.out.print(bv.getBoardTitle() + "\t\t" + bv.getBoardWriter() + "\t\t");
+				System.out.print(bv2.getBoardTitle() + "\t\t" + bv2.getBoardWriter() + "\t\t");
 			}
-			System.out.println(bv.getBoardDate().substring(2, 10));
+			if(bv2.getBoardContent().length() > 7) {
+				System.out.print(bv2.getBoardContent() + "\t");
+			}else {
+				System.out.print(bv2.getBoardContent() + "\t\t");
+			}
+			System.out.println(bv2.getBoardDate().substring(2, 10));
 		}
 		System.out.println("--------------------------------------------------------");
 	}

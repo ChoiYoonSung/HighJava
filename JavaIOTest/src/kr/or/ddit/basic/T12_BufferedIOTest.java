@@ -7,7 +7,6 @@ import java.io.IOException;
  * 성능향상을 위한 보조스트림 예제2
  * (문자기반의 Buffered스트림 사용 예제)
  * @author PC-06
- *
  */
 public class T12_BufferedIOTest {
 	public static void main(String[] args) {
@@ -21,7 +20,7 @@ public class T12_BufferedIOTest {
 			while((c=fr.read()) != -1) {
 				System.out.print((char)c);
 			}
-
+			
 			fr.close();
 			
 		} catch (IOException e) {
