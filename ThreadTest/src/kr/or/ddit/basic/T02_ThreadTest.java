@@ -16,6 +16,33 @@ public class T02_ThreadTest {
 		MyThread2 r1 = new MyThread2();
 		Thread mt2 = new Thread(r1);
 		mt2.start();
+
+		/* 방법3 : 익명클래스를 이용하는 방법
+		 * Runnable인터페이스를 구현한 익명클래스  Thread 인스턴스를 생성할 때
+		 * 매개변수로 넘겨준다. 
+		 */
+
+		 Thread th3 = new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				for(int i=0; i<=200; i++) {
+					System.out.print("@\n");
+					
+					try {
+						//Thread.sleep(시간) >> 주어진 시간동안 작업을 잠시 멈춘다.
+						//시간은 밀리세컨드 단위를 사용함
+						// 즉, 1000은 1초를 의미
+						Thread.sleep(100);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		});
+		
+		th3.start();
+		System.out.println("main메서드 작업 끝");
 	}
 }
 
