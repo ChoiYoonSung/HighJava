@@ -1,7 +1,5 @@
 package kr.or.ddit.basic;
 
-import java.awt.Window;
-
 public class T14_SyncThreadTest {
 	public static void main(String[] args) {
 		
