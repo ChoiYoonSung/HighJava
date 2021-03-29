@@ -3,7 +3,7 @@ package kr.or.ddit.basic;
 public class T02_LambdaTest {
 	public static void main(String[] args) {
 		// 람다식을 사용하지 않았을 겨우
-		LambdaTestintergace1 lam1 = new LambdaTestintergace1() {
+		LambdaTestinterface1 lam1 = new LambdaTestinterface1() {
 			
 			@Override
 			public void test() {
@@ -13,7 +13,7 @@ public class T02_LambdaTest {
 		};
 		lam1.test(); // 메서드 호출
 		
-		LambdaTestintergace1 lam2 = ()->
+		LambdaTestinterface1 lam2 = ()->
 			System.out.println("람다식 구현 객체 방식입니다.");
 			
 		lam2.test(); // 메서드 호출

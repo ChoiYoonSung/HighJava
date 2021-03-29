@@ -2,7 +2,7 @@ package kr.or.ddit.basic;
 
 //함수적 인터페이스 => 추상메서드가 1개 선언된 인터페이스
 @FunctionalInterface
-public interface LambdaTestintergace1 {
+public interface LambdaTestinterface1 {
 	// 반환값이 없고 매개변수도 없는 추상메서드
 	public void test();
 }
