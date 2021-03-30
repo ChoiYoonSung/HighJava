@@ -18,7 +18,7 @@ public class URLTest {
 		System.out.println("file : " + url.getFile());
 		System.out.println("path : " + url.getPath());
 		System.out.println("port : " + url.getPort());
-		System.out.println("ref : " + url.getRef());
+		System.out.println("ref : " + url.getRef());	//reference
 		System.out.println();
 		
 		System.out.println(url.toExternalForm());	// 외부 형태로 변환

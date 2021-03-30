@@ -71,7 +71,6 @@ class Horse extends Thread implements Comparable<Horse>{
 	int rank;
 	int loc;
 
-
 	public Horse(String name) {
 		this.Hname = name;
 	}
