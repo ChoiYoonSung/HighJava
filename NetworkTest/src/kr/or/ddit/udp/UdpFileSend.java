@@ -8,7 +8,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 
 public class UdpFileSend {
-	public static final int DEFAULT_BUFFER_SIZE = 10000;
+	public static final int DEFAULT_BUFFER_SIZE = 1000;
 	
 	public static void main(String[] args) {
 		String serverIp = "127.0.0.1";

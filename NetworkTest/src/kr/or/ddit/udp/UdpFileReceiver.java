@@ -34,37 +34,37 @@ public class UdpFileReceiver {
 			ds.receive(dp);
 			str = new String(dp.getData()).trim();
 			fileSize = Long.parseLong(str);
-			
+
 			double startTime = System.currentTimeMillis();
-			
-			while(true) {
-				ds.receive(dp);	// sender에서 전송을 시작한 경우
+
+			while (true) {
+				ds.receive(dp); // sender에서 전송을 시작한 경우
 				str = new String(dp.getData()).trim();
 				readBytes = dp.getLength();
 				fos.write(dp.getData(), 0, readBytes);
-				
+
 				totalReadBytes += readBytes;
-				
-				System.out.println("in progress : " + totalReadBytes + "/" 
-						+ fileSize + "Bytes (" + (totalReadBytes*100/fileSize) + "%)");
-				
-				if(totalReadBytes >= fileSize) {	// 파일 데이터를 모두 읽었을 때 while문 종료
+
+				System.out.println("in progress : " + totalReadBytes + "/" + fileSize + "Bytes ("
+						+ (totalReadBytes * 100 / fileSize) + "%)");
+
+				if (totalReadBytes >= fileSize) { // 파일 데이터를 모두 읽었을 때 while문 종료
 					break;
 				}
-				
-				double endTime = System.currentTimeMillis();
-				double diffTime = (endTime = startTime)/1000;
-				double transferSpeed = (fileSize/1000)/ diffTime;
-				
-				System.out.println("걸린 시간 : " + diffTime + " 초");
-				System.out.println("평균 전송 속도 : " + transferSpeed + "KB/s");
-				
-				System.out.println("수신 처리 완료");
-				
-				fos.close();
-				ds.close();
 			}
-			
+
+			double endTime = System.currentTimeMillis();
+			double diffTime = (endTime = startTime) / 1000;
+			double transferSpeed = (fileSize / 1000) / diffTime;
+
+			System.out.println("걸린 시간 : " + diffTime + " 초");
+			System.out.println("평균 전송 속도 : " + transferSpeed + "KB/s");
+
+			System.out.println("수신 처리 완료");
+
+			fos.close();
+			ds.close();
+
 		}else {
 			System.out.println("수신 처리 불가");
 			fos.close();
