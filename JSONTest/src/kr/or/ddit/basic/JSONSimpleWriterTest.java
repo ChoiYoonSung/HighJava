@@ -26,7 +26,7 @@ public class JSONSimpleWriterTest {
 		
 		jsonObj.put("name", "Gil-dong Hong");
 		jsonObj.put("job", "Student");
-		jsonObj.put("age", "25");
+		jsonObj.put("age", 25);
 		jsonObj.put("addr", "대전 중구 대흥동");
 		
 		// JSONArray 데이터 설정
@@ -52,7 +52,7 @@ public class JSONSimpleWriterTest {
 		
 		jsonObj.put("singerList", singerList);
 		
-		FileWriter fw = new FileWriter("D:/D_Other/myJSONFile.txt");
+		FileWriter fw = new FileWriter("D:/D_Other/myJsonFile.txt");
 		fw.write(jsonObj.toString());
 		fw.flush();
 		fw.close();

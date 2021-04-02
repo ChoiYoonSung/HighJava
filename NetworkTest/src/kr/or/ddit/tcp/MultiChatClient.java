@@ -20,10 +20,11 @@ public class MultiChatClient {
 		Socket socket = null;
 
 		try {
-			socket = new Socket("192.168.43.132", 7777);
+			socket = new Socket("192.168.43.40", 7777);
 
 			System.out.println("서버에 연결되었습니다.");
-
+			System.out.println("귓속말 방법 : [/w 상대방닉네임 내용]");
+			
 			// 송신용 스레드 생성
 			ClientSender sender = new ClientSender(socket, nickName);
 			// 수신용 스레드 생성

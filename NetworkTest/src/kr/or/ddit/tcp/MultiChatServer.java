@@ -78,9 +78,33 @@ public class MultiChatServer {
 				// 대화명에 해당하는 Socket의 OutputStream 구하기
 				DataOutputStream dos = new DataOutputStream(
 						clients.get(name).getOutputStream());
-				dos.writeUTF("[" + from + "] " + msg);	// 메시지 보내기
+				dos.writeUTF(from + " : " + msg);	// 메시지 보내기
 			}catch (IOException e) {
 				e.printStackTrace();
+			}
+		}
+	}
+	
+	/**
+	 * 귓속말 메서드
+	 * /w 닉네임 내용 
+	 * @param msg	내용
+	 * @param from	송신자
+	 * @param to	수신자
+	 */
+	public void sendMessage(String msg, String from, String to) {
+		// Map에 저장된 유저의 대화명 리스트 추출(key값 구하기)
+		Iterator<String> it = clients.keySet().iterator();
+		while(it.hasNext()) {
+			try {
+				String name = it.next(); // 대화명
+				
+				// 대화명에 해당하는 Socket의 OutputStream 구하기
+				DataOutputStream dos = new DataOutputStream(
+						clients.get(name).getOutputStream());
+				dos.writeUTF("[" + to + "님에게] : " + msg);	// 메시지 보내기
+			}catch (IOException e) {
+				e.printStackTrace(); 
 			}
 		}
 	}
@@ -118,7 +142,20 @@ public class MultiChatServer {
 				// 이 이후의 메시지 처리는 반복문으로 처리한다.
 				// 한 클라이언트가 보낸 메시지를 다른 모든 클라이언트에게 보내준다.
 				while(dis != null) {
-					sendMessage(dis.readUTF(), name);
+					String sendMessage = dis.readUTF();
+					
+					if(sendMessage.indexOf("/w") == 0) {	// 보내는 메시지 맨 앞에 /w 가 있을 때
+						String[] sendMessages = sendMessage.split(" ");
+						
+						String str = "";
+						for(int i = 2 ; i < sendMessages.length ; i++) {
+							str += sendMessages[i] + " ";
+						}
+						sendMessage(str, name, sendMessages[1]);
+					}else{
+						
+						sendMessage(sendMessage, name);
+					}
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
