@@ -13,7 +13,7 @@ import org.json.simple.JSONObject;
  * 	1. String
  *  2. number
  *  3. Object(JSON object)
- *  4. array (Json Object 안에 배열이 들어가 있는 형태)
+ *  4. array (JSON Object 안에 배열이 들어가 있는 형태)
  *  5. boolean
  *  6. null
  *  
