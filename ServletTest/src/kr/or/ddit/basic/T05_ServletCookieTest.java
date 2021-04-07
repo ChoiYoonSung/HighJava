@@ -43,49 +43,58 @@ public class T05_ServletCookieTest extends HttpServlet{
 		
 	}
 	
-	private void deleteCookieExam(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-	/**
-	 	사용중인 쿠키를 삭제하는 방법
-	 	
-	 	1. 사용중인 쿠키정보를 이용하여 쿠키객체를 생성한다.
-	 	2. 쿠키 객체의 최대지속시간을 0으로 설정한다. 
-	 		(setMaxAge를 0으로 설정하면 삭제하는 메소드가 된다)
-	 	3. 설정한 쿠키객체를 응답헤더에 추가하여 전송한다.
-	 */
-		Cookie[] cookies = req.getCookies();
+	private void setCookieExam(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		/**
+		 	쿠키 정보를 설정하는 방법
+		 	
+		 	1. 쿠키객체를 생성한다. 사용불가 문자(공백, []()=,"/?@:;)
+	 		Cookie cookie = new Cookie("키값", "value값");
+	 		=> 이외의 값(예를 들면 한글)을 사용시에는 URLEncoder.encode();
+		 		사용하여 인코딩 처리를 해준다.
+		 	
+		 	2. 쿠키 최대 지속시간을 설정한다.(초단위)
+	 		=> 지정하지 않으면 웹브라우저 종료와 함께 쿠키를 함께 삭제한다.
+	 		cookie.setMaxAge(60*60*24) // 24시간(60초*60분*24시간)
+		 	
+		 	3. 응답헤더에 쿠키 객체를 추가한다.
+		 	response.addCookie(cookie);
+		 	=> 출력버퍼가 플러시 된 이후에는 쿠키를 추가할 수 없다.
+		 		(응답헤더를 통해서 웹브라우저에 전달하기 때문에)
+		 */
+			// 쿠키객체 생성하기
+		Cookie userId = new Cookie("userId", req.getParameter("userId"));
 		
-		resp.setCharacterEncoding("utf-8");
+		// 쿠키값에 한글을 사용 시 인코딩 처리를 해준다.
+		Cookie name = new Cookie("name", 
+				URLEncoder.encode(req.getParameter("name"), "UTF-8"));
+		
+		// 쿠키 소멸시간 설정(초단위) => 지정하지 않으면 웹브라우저를 종료할 때 쿠키를 함께 삭제한다.
+		userId.setMaxAge(60*60*24); //1일
+		name.setMaxAge(60*60*24*2); //2일
+		
+		// 쿠키 추가하기
+		resp.addCookie(userId);
+		resp.addCookie(name);
+		
+		// 응답헤더에 인코딩 및 content-type설정
+		resp.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html");
 		
 		PrintWriter out = resp.getWriter();
 		
-		String title = "쿠키정보 삭제 예제";
+		String title = "쿠키설정 예제";
 		
-		out.println("<html><head><title>"
-				+ title + "</title><head>"
-				+ "<body>");
-		if(cookies != null) {
-			out.println("<h2>" + title + "</h2>");
-			
-			for (Cookie cookie : cookies) {
-				if((cookie.getName()).equals("userId")) {
-					cookie.setMaxAge(0);
-					resp.addCookie(cookie);
-					out.println("삭제한 쿠키 : "
-					+ cookie.getName() + "<br>");
-				}
-				out.print("쿠키 이름 : " 
-						+ cookie.getName() + ", ");
-				out.print("쿠키 값 : " 
-						+ URLDecoder.decode(cookie.getValue(), "utf-8")
-							+ "<br>");
-			}
-		}else {
-			out.println("<h2>쿠키 정보가 없습니다.</h2>");
-		}
-		out.println("</body></html>");
+		out.println("<html><head><title>" + title + "</title></head>");
+		out.println("<body>"
+				+ "<h1 align=\"center\">"+ title + "</h1>"
+				+ "<ul>"
+				+ "<li><b>ID</b>: "
+				+ req.getParameter("userId") + "</li>"
+				+ "<li><b>이름</b>: "
+				+ req.getParameter("name") + "</li>"
+				+ "</ul></body></html>");
 	}
-
+	
 	private void readCookieExam(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 		Cookie cookie = null;
 		// 현재 도메인에서 사용중인 쿠키정보 배열 가져오기
@@ -121,57 +130,48 @@ public class T05_ServletCookieTest extends HttpServlet{
 		
 	}
 
-	private void setCookieExam(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-	/**
-	 	쿠키 정보를 설정하는 방법
-	 	
-	 	1. 쿠키객체를 생성한다. 사용불가 문자(공백, []()=,"/?@:;)
- 		Cookie cookie = new Cookie("키값", "value값");
- 		=> 이외의 값(예를 들면 한글)을 사용시에는 URLEncoder.encode();
-	 		사용하여 인코딩 처리를 해준다.
-	 	
-	 	2. 쿠키 최대 지속시간을 설정한다.(초단위)
- 		=> 지정하지 않으면 웹브라우저 종료와 함께 쿠키를 함께 삭제한다.
- 		cookie.setMaxAge(60*60*24) // 24시간(60초*60분*24시간)
-	 	
-	 	3. 응답헤더에 쿠키 객체를 추가한다.
-	 	response.addCookie(cookie);
-	 	=> 출력버퍼가 플러시 된 이후에는 쿠키를 추가할 수 없다.
-	 		(응답헤더를 통해서 웹브라우저에 전달하기 때문에)
-	 */
-		// 쿠키객체 생성하기
-		Cookie userId = new Cookie("userId", req.getParameter("userId"));
-		
-		// 쿠키값에 한글을 사용 시 인코딩 처리를 해준다.
-		Cookie name = new Cookie("name", 
-				URLEncoder.encode(req.getParameter("name"), "UTF-8"));
-		
-		// 쿠키 소멸시간 설정(초단위) => 지정하지 않으면 웹브라우저를 종료할 때 쿠키를 함께 삭제한다.
-		userId.setMaxAge(60*60*24); //1일
-		name.setMaxAge(60*60*24*2); //2일
-		
-		// 쿠키 추가하기
-		resp.addCookie(userId);
-		resp.addCookie(name);
-		
-		// 응답헤더에 인코딩 및 content-type설정
-		resp.setCharacterEncoding("UTF-8");
-		resp.setContentType("text/html");
-		
-		PrintWriter out = resp.getWriter();
-		
-		String title = "쿠키설정 예제";
-		
-		out.println("<html><head><title>" + title + "</title></head>");
-		out.println("<body>"
-				+ "<h1 align=\"center\">"+ title + "</h1>"
-				+ "<ul>"
-				+ "<li><b>ID</b>: "
-				+ req.getParameter("userId") + "</li>"
-				+ "<li><b>이름</b>: "
-				+ req.getParameter("name") + "</li>"
-				+ "</ul></body></html>");
-	}
+	private void deleteCookieExam(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		/**
+		 	사용중인 쿠키를 삭제하는 방법
+		 	
+		 	1. 사용중인 쿠키정보를 이용하여 쿠키객체를 생성한다.
+		 	2. 쿠키 객체의 최대지속시간을 0으로 설정한다. 
+		 		(setMaxAge를 0으로 설정하면 삭제하는 메소드가 된다)
+		 	3. 설정한 쿠키객체를 응답헤더에 추가하여 전송한다.
+		 */
+			Cookie[] cookies = req.getCookies();
+			
+			resp.setCharacterEncoding("utf-8");
+			resp.setContentType("text/html");
+			
+			PrintWriter out = resp.getWriter();
+			
+			String title = "쿠키정보 삭제 예제";
+			
+			out.println("<html><head><title>"
+					+ title + "</title><head>"
+					+ "<body>");
+			if(cookies != null) {
+				out.println("<h2>" + title + "</h2>");
+				
+				for (Cookie cookie : cookies) {
+					if((cookie.getName()).equals("userId")) {
+						cookie.setMaxAge(0);
+						resp.addCookie(cookie);
+						out.println("삭제한 쿠키 : "
+						+ cookie.getName() + "<br>");
+					}
+					out.print("쿠키 이름 : " 
+							+ cookie.getName() + ", ");
+					out.print("쿠키 값 : " 
+							+ URLDecoder.decode(cookie.getValue(), "utf-8")
+								+ "<br>");
+				}
+			}else {
+				out.println("<h2>쿠키 정보가 없습니다.</h2>");
+			}
+			out.println("</body></html>");
+		}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
