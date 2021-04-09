@@ -135,6 +135,15 @@
  		<url-pattern>/upload2</url-pattern>
  	</servlet-mapping>
  	
+ 	<servlet>
+ 		<servlet-name>UploadServlet3</servlet-name>
+ 		<servlet-class>kr.or.ddit.upload.UploadServlet3</servlet-class>
+ 	</servlet>
+ 	<servlet-mapping>
+ 		<servlet-name>UploadServlet3</servlet-name>
+ 		<url-pattern>/upload3</url-pattern>
+ 	</servlet-mapping>
+ 	
  	
  	
  	<listener>
