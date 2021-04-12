@@ -25,7 +25,7 @@ public class SelectMemberAllServlet extends HttpServlet {
 		
 		req.setAttribute("memList", memList);
 		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/member/list.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("WEB-INF/view/member/list.jsp");
 		
 		dispatcher.forward(req, resp);	// 뷰페이지로 전달
 		
@@ -33,7 +33,6 @@ public class SelectMemberAllServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
 		doGet(req, resp);
 	}
 }

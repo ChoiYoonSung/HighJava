@@ -18,9 +18,13 @@ public class CustomEncoding implements Filter {
    private String encoding; // 인코딩 정보
    
    @Override
-   public void destroy() {
-      // TODO Auto-generated method stub
-      
+   public void init(FilterConfig fc) throws ServletException {
+	   
+	   if(fc.getInitParameter("encoding") == null) {
+		   this.encoding = "UTF-8";
+	   }else {
+		   this.encoding = fc.getInitParameter("encoding");
+	   }
    }
 
    @Override
@@ -35,14 +39,10 @@ public class CustomEncoding implements Filter {
       
       fc.doFilter(req, resp);
    }
-
+   
    @Override
-   public void init(FilterConfig fc) throws ServletException {
-      
-      if(fc.getInitParameter("encoding") == null) {
-         this.encoding = "UTF-8";
-      }else {
-         this.encoding = fc.getInitParameter("encoding");
-      }
+   public void destroy() {
+	   // TODO Auto-generated method stub
    }
+
 }

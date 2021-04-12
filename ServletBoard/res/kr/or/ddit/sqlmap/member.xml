@@ -47,7 +47,7 @@
 	
 	<delete id="deleteMember" parameterClass="String">
 	
-		delete from mymember where mem_id = #memId#
+		delete from mymember where mem_id = #aaa#
 		
 	</delete>
 	
@@ -94,10 +94,7 @@
 	 </isNotEmpty>
 	
 	</select>
-	
-	<select id="getMemberInfo" resultMap="memMap">
-		select * from mymember where mem_id = #memId#
-	</select>
+
 
 </sqlMap>			
 
