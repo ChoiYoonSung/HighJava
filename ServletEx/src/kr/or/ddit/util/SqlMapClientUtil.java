@@ -12,7 +12,7 @@ import com.ibatis.sqlmap.client.SqlMapClientBuilder;
  * SqlMapClient 객체를 제공하는 클래스
  */
 public class SqlMapClientUtil {
-	private static SqlMapClient smc;
+	private static SqlMapClient smc;	// SqlMapClient 객체변수 선언
 	
 	private SqlMapClientUtil() {
 		// TODO Auto-generated constructor stub

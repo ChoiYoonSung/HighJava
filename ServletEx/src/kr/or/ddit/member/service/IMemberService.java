@@ -7,7 +7,7 @@ import kr.or.ddit.member.vo.MemberVO;
 
 /**
  * 회원정보 처리를 수행하는 서비스
- * @author 유은지
+ * @author PC-06
  *
  */
 public interface IMemberService {

@@ -29,10 +29,8 @@
 
 	<insert id="insertMember" parameterClass="kr.or.ddit.member.vo.MemberVO">
 	
-		insert into mymember 
-		(mem_id,mem_name,mem_tel,mem_addr)
-         values(#memId#,#memName#,#memTel#,#memAddr#)
-	
+		insert into mymember(mem_id,mem_name,mem_tel,mem_addr)
+        values(#memId#,#memName#,#memTel#,#memAddr#)
 	</insert>
 	
 	<update id="updateMember" parameterClass="kr.or.ddit.member.vo.MemberVO">

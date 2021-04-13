@@ -37,8 +37,9 @@ public class UploadServlet3 extends HttpServlet {
 		- Content-Disposition : form-data; name="fieldName"; filename
 	 */
 		for(String content : part.getHeader("Content-Disposition").split(";")) {
-			return content.substring
-					(content.indexOf("=") + 1).trim().replace("/", "");
+			if(content.trim().startsWith("filename")) {
+				String result = content.substring(content.indexOf("=")).trim().replace("/", "");
+			}
 		}
 		
 		return null;

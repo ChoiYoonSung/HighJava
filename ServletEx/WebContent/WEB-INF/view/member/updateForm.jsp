@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	MemberVO memVO = (MemberVO)request.getAttribute("memVo");
+	MemberVO memVO = (MemberVO)request.getAttribute("memVO");
 %>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -13,7 +13,7 @@
 </head>
 <body>
 	<form action="update.do" method="post">
-		<input type="hidden" name="memId" value="<%=memVO.getMemName()%>">
+		<input type="hidden" name="memId" value="<%=memVO.getMemId()%>">
 		<table>
 			<tr>
 				<td>이 름 : </td>
@@ -25,7 +25,7 @@
 			</tr>
 			<tr>
 				<td>주 소 : </td>
-				<td><textarea rows="5" cols="10" name="memAddr"><%=memVO.getMemAddr()%></textarea> </td>
+				<td><textarea rows="5" cols="20" name="memAddr"><%=memVO.getMemAddr()%></textarea> </td>
 			</tr>
 		</table>
 		<input type="submit" value="회원정보 수정">

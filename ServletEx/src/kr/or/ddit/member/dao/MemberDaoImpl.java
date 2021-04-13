@@ -74,7 +74,7 @@ public class MemberDaoImpl implements IMemberDao{
 
 	@Override
 	public MemberVO getMember(SqlMapClient smc, String memId) throws SQLException {
-		MemberVO mv = (MemberVO)smc.queryForObject("member.getMemberInfo",memId);
+		MemberVO mv = (MemberVO) smc.queryForObject("member.getMemberInfo", memId);
 		return mv;
 	}
 
