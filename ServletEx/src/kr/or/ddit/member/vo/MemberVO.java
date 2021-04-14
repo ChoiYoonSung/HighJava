@@ -8,11 +8,19 @@ package kr.or.ddit.member.vo;
  *  </p>
  */
 public class MemberVO {
+
 	private String memId;
 	private String memName;
 	private String memTel;
 	private String memAddr;
+	private long atchFileId = -1;
 	
+	public long getAtchFileId() {
+		return atchFileId;
+	}
+	public void setAtchFileId(long atchFileId) {
+		this.atchFileId = atchFileId;
+	}
 	public String getMemId() {
 		return memId;
 	}

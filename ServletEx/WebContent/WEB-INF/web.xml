@@ -17,6 +17,14 @@
   		<url-pattern>*.do</url-pattern>
   	</servlet-mapping>
   
+ 	<filter>
+ 		<filter-name>MultipartParser</filter-name>
+ 		<filter-class>kr.or.ddit.comm.filter.MultipartParser</filter-class>
+ 	</filter>
+ 	<filter-mapping>
+ 		<filter-name>MultipartParser</filter-name>
+ 		<url-pattern>/*</url-pattern>
+ 	</filter-mapping>
  	<!-- <servlet>
  		<servlet-name>SelectMemberAllServlet</servlet-name>
  		<servlet-class>kr.or.ddit.member.controller.SelectMemberAllServlet</servlet-class>
@@ -43,5 +51,6 @@
  		<filter-name>CustomEncoding</filter-name>
  		<url-pattern>/*</url-pattern>
  	</filter-mapping>
+ 	
  	
 </web-app>

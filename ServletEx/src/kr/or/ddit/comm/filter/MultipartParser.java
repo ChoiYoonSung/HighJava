@@ -37,7 +37,7 @@ public class MultipartParser implements Filter{
 					((HttpServletRequest) req, MEMORY_THRESHOLD, MAX_FILE_SIZE, MAX_REQUEST_SIZE, "");
 			
 			// 래퍼 클래스 적용
-			fc.doFilter(req, resp);
+			fc.doFilter(requestWrapper, resp);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

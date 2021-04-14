@@ -72,7 +72,7 @@ public class AtchFileServiceImpl implements IAtchFileService{
 		atchFileVO.setFileExtsn(fileExtension);
 		
 		// 파일 세부정보 저장
-		fileDao.insertAtchFile(atchFileVO);
+		fileDao.insertAtchFileDetail(atchFileVO);
 		
 		item.delete(); 	// 임시 업로드 파일 삭제
 		return atchFileVO;
