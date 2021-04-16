@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+<title>회원가입</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script
+	src="../../js/member/memberRegist.js?v=1"></script>
+<script
+	src="../../js/common/MyUtil.js?v=1"></script>
+<script type="text/javascript">
+
+	
+</script>
+<style type="text/css">
+	body{
+		background-color: #EFF7F7; 
+	}
+	.container{
+		background-color: #F7F7FF;
+	}
+	table{
+		width:100%;
+		text-align: center;
+		border-collapse: collapse;
+	}
+	tbody, th, td{
+		text-align: center;
+		border:1px solid;
+		padding :5px;
+	}
+	#star{
+		color:#F7878F;
+	}
+</style>
+	
+</head>
+<body>
+	<h2>MemBer Regist</h2>
+	<div class="container">
+		<form class="form-horizontal" action="/action_page.php" id="fm">
+			<div class="form-group ">
+				<label class="control-label col-sm-2" for="memId">ID:<span id="star">*</span></label>
+				<div class="col-sm-5 form-inline" >
+					<input type="text" class="form-control" id="memId"
+						placeholder="아이디를 입력하세요." name="memId">
+					<button type="button" class="btn btn-info" onclick="chkId()">중복검사</button>
+					<span id="spMemId" style="display:inline;">영어 소문자 사용 가능</span>	
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="memPass">Password:<span id="star">*</span></label>
+				<div class="col-sm-10">
+					<input type="password" class="form-control" id="memPass"
+						placeholder="비밀번호를 입력하세요." name="memPass">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="memName">Name:<span id="star">*</span></label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="memName"
+						placeholder="이름을 입력하세요." name="memName">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="memBir">BIR:<span id="star">*</span></label>
+				<div class="col-sm-10">
+					<input type="date" class="form-control" id="memBir"
+						placeholder="생일을 입력하세요." name="memBir">
+				</div>
+			</div>
+			
+			
+
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="memZip">ZIP:<span id="star">*</span></label>
+				<div class="col-sm-10 form-inline">
+					<input type="text" class="form-control" id="memZip"
+						placeholder="우편번호를 입력하세요." name="memZip">
+<!-- 						<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">주소 검색</button> -->
+ 						<button type="button" class="btn btn-info" onclick="openZip()">주소 검색</button>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="memAdd1">Add1:<span id="star">*</span></label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="memAdd1"
+						placeholder="주소를 입력하세요." name="memAdd1">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="memAdd2">Add2:<span id="star">*</span></label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="memAdd2"
+						placeholder="상세주소 입력하세요." name="memAdd2">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="memHp">HP:<span id="star">*</span></label>
+				<div class="col-sm-10">
+					<input type="tel" class="form-control" id="memHp"
+						placeholder="핸드폰 번호를 입력하세요." name="memHp">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="memMail">Email:<span id="star">*</span></label>
+				<div class="col-sm-10">
+					<input type="email" class="form-control" id="memMail"
+						placeholder="Email을 입력해주세요." name="memMail">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="recvEmailYn">Commercial Mail:</label>
+				<div class="col-sm-10 checkbox">
+					<label class="radio-inline"><input type="radio" name="recvEmailYn" value="Y" id="recvEmailYnY">수신</label>
+					<label class="radio-inline"><input type="radio" name="recvEmailYn" value="N" id="recvEmailYnN">미수신</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="memJob">Job:</label>
+				<div class="col-sm-5">
+					<select class="form-control" id="memJob" name="memJob">
+
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="memLike">Like:</label>
+				<div class="col-sm-10" id="memLike" name="memLike">
+				
+				</div>
+			</div>
+			<div class="form-group form-inline">
+				<label class="control-label col-sm-2" for="memMemorialType">MemorialType:</label>
+				<div class="col-sm-2">
+					<select class="form-control" id="memMemorialType" name="memMemorialType">
+					</select>
+				</div>
+				<div class="col-sm-5">
+					<input type="date" class="form-control" id="memMemorialDate"
+						name="memMemorialDate">
+				</div>
+			</div>			
+				
+				
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="memMileage">Mileage:</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="memMileage"
+						placeholder="마일리지를 입력하세요?" name="memMileage">
+				</div>
+			</div>			
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="memComment">Comment:</label>
+				<div class="col-sm-10">
+					<textarea class="form-control" id="memComment"
+						placeholder="하고싶은 말을 입력하세요" name="memComment"></textarea>
+				</div>
+			</div>			
+
+			<input type="hidden" name="flag" id="formFlag">
+
+		</form>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="button" class="btn btn-default" onclick="save()">Submit</button>
+				</div>
+			</div>
+	</div>
+			<!-- Modal -->
+			<div class="modal fade" id="myModal" role="dialog">
+				<div class="modal-dialog">
+
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">주소 검색</h4>
+						</div>
+						<div class="modal-body">
+						시 : 
+							<select id="city" onchange="setGu()">							
+
+							</select>
+						구 : 
+							<select id="gu" onchange="setDong()" disabled="disabled">							
+
+							</select>
+						동 : 
+							<select id="dong" disabled="disabled">							
+
+							</select>
+							<button type="button" onclick="searchZipCode()">검색</button>
+							<br>
+							<div id="divZipResult"">
+								<table id="tbZipResult">
+									<tbody>
+										<tr>
+											<th>우편번호</th>
+											<th>주소</th>
+										</tr>
+									
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">닫기</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+<!-- 			modal end -->
+</body>
+</html>
