@@ -1,6 +1,0 @@
-package zeroback;
-
-public class zeroback {
-	int name;
-	int age;
-}
