@@ -12,7 +12,7 @@ public class AtchFileVO {
 	private String fileExtsn;
 	private String fileCn;
 	private long fileSize = 0;
-
+ 
 	public long getAtchFileId() {
 		return atchFileId;
 	}

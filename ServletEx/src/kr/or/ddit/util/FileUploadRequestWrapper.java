@@ -2,7 +2,6 @@ package kr.or.ddit.util;
 
 import java.io.File;
 import java.io.UnsupportedEncodingException;
-import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;

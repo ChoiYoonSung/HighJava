@@ -44,13 +44,6 @@ public class MemberDaoImpl implements IMemberDao{
 	}
 
 	@Override
-	public List<MemberVO> getAllMemberList(SqlMapClient smc) throws SQLException {
-		
-		List<MemberVO> memList = smc.queryForList("member.getMemberAll");
-		return memList;
-	}
-
-	@Override
 	public int updateMember(SqlMapClient smc, MemberVO mv) throws SQLException {
 		int cnt = smc.update("member.updateMember",mv); 
 		
@@ -62,6 +55,13 @@ public class MemberDaoImpl implements IMemberDao{
 		int cnt = smc.delete("member.deleteMember",memId);
 				
 		return cnt;
+	}
+	
+	@Override
+	public List<MemberVO> getAllMemberList(SqlMapClient smc) throws SQLException {
+		
+		List<MemberVO> memList = smc.queryForList("member.getMemberAll");
+		return memList;
 	}
 	
 	@Override

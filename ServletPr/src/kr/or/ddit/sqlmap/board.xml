@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+			
+<sqlMap namespace="board">
+
+	<insert id="insertBoard" parameterClass="kr.or.ddit.board.vo.BoardVO">
+		INSERT INTO TB_BOARD (
+			BOARD_SEQ
+			, BOARD_TITLE
+			, BOARD_WRITER
+			, BOARD_DATE
+			, BOARD_CONTENT
+			, BOARD_HITS
+			, ATCH_FILE_ID
+		)
+		VALUES (
+			SEQ_BOARD.NEXTVAL
+			, #boardTitle#
+			, #boardWriter#
+			, SYSDATE
+			, #boardContent#
+			, #boardHits#
+			, #atchFileId#
+		)
+	</insert>
+	
+	<update id="updateBoard" parameterClass="kr.or.ddit.board.vo.BoardVO">
+		UPDATE TB_BOARD
+		SET    BOARD_TITLE = #boardTitle#
+			   , BOARD_CONTENT = #boardContent#
+			   , ATCH_FILE_ID = #atchFileId#
+		WHERE  BOARD_SEQ = #boardSeq#
+	</update>
+	
+	<delete id="deleteBoard" parameterClass="long">
+		DELETE FROM TB_BOARD
+		WHERE       BOARD_SEQ = #boardSeq#
+	</delete>
+	
+	<select id="getBoard" parameterClass="long" resultClass="kr.or.ddit.board.vo.BoardVO">
+		SELECT BOARD_SEQ                            boardSeq
+			   , BOARD_TITLE                        boardTitle
+			   , BOARD_WRITER                       boardWriter
+			   , TO_CHAR(BOARD_DATE, 'YY-MM-DD')    boardDate
+			   , BOARD_CONTENT                      boardContent
+			   , BOARD_HITS                         boardHits
+			   , ATCH_FILE_ID                       atchFileId
+		FROM   TB_BOARD
+		WHERE  BOARD_SEQ = #boardSeq#
+	</select>
+	
+	<select id="getBoardList" resultClass="kr.or.ddit.board.vo.BoardVO">
+		SELECT BOARD_SEQ                            boardSeq
+			   , BOARD_TITLE                        boardTitle
+			   , BOARD_WRITER                       boardWriter
+			   , TO_CHAR(BOARD_DATE, 'YY-MM-DD')    boardDate
+			   , BOARD_CONTENT                      boardContent
+			   , BOARD_HITS                         boardHits
+			   , ATCH_FILE_ID                       atchFileId
+		FROM   TB_BOARD
+		ORDER BY BOARD_SEQ DESC
+	</select>
+	
+	<select id="searchBoard" parameterClass="kr.or.ddit.board.vo.BoardVO" resultClass="kr.or.ddit.board.vo.BoardVO">
+		SELECT BOARD_SEQ                            boardSeq
+			   , BOARD_TITLE                        boardTitle
+			   , BOARD_WRITER                       boardWriter
+			   , TO_CHAR(BOARD_DATE, 'YY-MM-DD')    boardDate
+			   , BOARD_CONTENT                      boardContent
+			   , BOARD_HITS                         boardHits
+			   , ATCH_FILE_ID                       atchFileId
+		FROM   TB_BOARD
+		WHERE  1 = 1
+		<isNotEmpty property="boardTitle">
+		AND    BOARD_TITLE = #boardTitle#
+		</isNotEmpty>
+		<isNotEmpty property="boardContent">
+		AND    BOARD_TITLE = #boardContent#
+		</isNotEmpty>
+		<isNotEmpty property="boardWriter">
+		AND    BOARD_TITLE = #boardWriter#
+		</isNotEmpty>
+		ORDER BY BOARD_SEQ DESC
+	</select>
+	
+	<update id="countHits" parameterClass="long">
+		UPDATE TB_BOARD
+		SET    BOARD_HITS = (BOARD_HITS + 1)
+		WHERE  BOARD_SEQ = #boardSeq#
+	</update>
+
+</sqlMap>

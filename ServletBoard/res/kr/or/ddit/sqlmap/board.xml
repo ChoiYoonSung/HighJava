@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="board">
+	
+	<insert id="insertBoard" parameterClass="kr.or.ddit.board.vo.BoardVO">
+		insert into BOARD(
+			  board_num
+			, board_title
+			, board_writer
+			, board_content
+			, board_date
+			)
+		values(
+			  BOARD_SEQ.nextVal
+			, #boardTitle#
+			, #boardWriter#
+			, #boardContent#
+			, sysdate
+			)
+	</insert>
+	
+	<update id="updateBoard" parameterClass="kr.or.ddit.board.vo.BoardVO">
+		update BOARD
+		set 
+			board_title = #boardTitle#
+			, board_content = #boardContent#
+			, board_date = sysdate
+		where
+	</update>
+	
+	<delete id="deleteBoard" parameterClass="long">
+		delete BOARD
+		where board_num = #boardNum#
+	</delete>
+	
+	<select id="getAllBoard" resultClass="kr.or.ddit.board.vo.BoardVO">
+		select 
+			  board_num
+			, board_title
+			, board_writer
+			, board_content
+			, board_date
+		from BOARD
+	</select>
+	
+	<select id="selectBoard" resultClass="kr.or.ddit.board.vo.BoardVO" parameterClass="long">
+		select
+			  board_num
+			, board_title
+			, board_writer
+			, board_content
+			, board_date
+		from BOARD
+		where board_num = #boardNum#
+	</select>
+
+</sqlMap>			

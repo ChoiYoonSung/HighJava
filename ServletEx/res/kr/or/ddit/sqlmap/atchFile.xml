@@ -31,8 +31,7 @@
 	</select>
 	
 	<insert id="insertAtchFile">
-		<selectKey keyProperty="atchFileId" 
-						resultClass="long">
+		<selectKey keyProperty="atchFileId" resultClass="long">
 			select ATCH_FILE_SEQ.nextval from dual
 		</selectKey>
 		
